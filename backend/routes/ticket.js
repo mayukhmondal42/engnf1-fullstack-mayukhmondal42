@@ -1,0 +1,10 @@
+import express from "express";
+import { importTickets, getTickets, getTicketById, updateTicket, getStats } from "../controllers/ticket.js";
+import { protect, adminOnly } from "../middleware/auth.js";
+const router = express.Router();
+router.post("/import", protect, adminOnly, importTickets);
+router.get("/stats", protect, adminOnly, getStats);
+router.get("/", protect, getTickets);
+router.get("/:id", protect, getTicketById);
+router.patch("/:id", protect, updateTicket);
+export default router;
